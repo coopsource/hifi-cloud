@@ -1,0 +1,45 @@
+---
+- name: Create required paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+  with_items:
+    - "{{ common.paths.upstart.confs }}"
+    - "{{ common.paths.upstart.environments }}"
+    - "{{ common.paths.logs }}"
+    - "{{ common.paths.private }}"
+
+- name: Parse upstart templates
+  template:
+    src: "services/assignment.conf.j2"
+    dest: "{{ common.paths.upstart.confs }}/hifi-{{ item.name }}.conf"
+    owner: root
+    group: root
+    mode: 0640
+  with_items:
+    - name: "entities-server"
+      type: "6"
+    - name: "avatar-mixer"
+      type: "1"
+    - name: "audio-mixer"
+      type: "0"
+
+- name: Add Qt to library search path
+  template:
+    src: "ld.so.conf/hifi-ubuntu14.04-prod.conf.j2"
+    dest: "/etc/ld.so.conf.d/hifi-ubuntu14.04-prod.conf"
+    owner: root
+    group: root
+    mode: 0640
+  notify:
+    - ldconfig
+
+- name: Install apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ hifi_ubuntu1404_prod.packages }}"

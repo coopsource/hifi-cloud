@@ -5,7 +5,7 @@
     state: present
     update_cache: yes
   with_items:
-    - "{{ hifi_ubuntu_dev.repositories }}"
+    - "{{ hifi_ubuntu1404_dev.repositories }}"
 
 - name: Install apt packages
   apt:
@@ -13,7 +13,7 @@
     state: latest
     force: yes
   with_items:
-    - "{{ hifi_ubuntu_dev.packages }}"
+    - "{{ hifi_ubuntu14.04_dev.packages }}"
 
 - name: Install alternatives
   shell: "update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9"
@@ -21,7 +21,7 @@
     executable: "/bin/bash"
 
 - name: Set QT_CMAKE_PREFIX_PATH env for all users
-  shell: "echo QT_CMAKE_PREFIX_PATH={{ hifi_ubuntu_dev.paths.qt }} >> /etc/environment"
+  shell: "echo QT_CMAKE_PREFIX_PATH={{ hifi_ubuntu1404_base.library_paths.qt }}/cmake >> /etc/environment"
   args:
     executable: "/bin/bash"
 
@@ -45,4 +45,4 @@
 #    repo: "{{ item.url }}"
 #  sudo: no
 #  with_items:
-#    - "{{ hifi_ubuntu_dev.repos }}"
+#    - "{{ hifi_ubuntu1404_dev.repos }}"

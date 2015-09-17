@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: hifi-ubuntu14.04-base }
+  - { role: common }

@@ -1,6 +1,11 @@
 ---
 common:
   paths:
-    hifi_lib_dir: "/usr/share/hifi"
     logs: "/var/log/hifi"
-    upstart: "/etc/init"
+    systemd:
+      services: "/etc/systemd/system"
+      environments: "/etc/default"
+    upstart:
+      confs: "/etc/init"
+      environments: "/etc/default"
+    private: "/usr/local/hifi"

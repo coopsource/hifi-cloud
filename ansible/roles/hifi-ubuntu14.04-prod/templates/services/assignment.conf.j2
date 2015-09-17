@@ -1,0 +1,17 @@
+# High Fidelity Server Stack - ({{ item.name }})
+#
+# 20150917 - Leonardo Murillo <leo@highfidelity.io>
+
+description "High Fidelity - {{ item.name }}"
+
+respawn
+
+setuid root
+setgid root
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+script
+    {{ common.paths.private }}/assignment-client -t {{ item.type }} -a localhost 2>&1 >> {{ common.paths.logs }}/{{ item.name }}.log
+end script

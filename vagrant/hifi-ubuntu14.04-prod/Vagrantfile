@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ansible/hifi-ubuntu-dev.yml"
+    ansible.playbook = "ansible/hifi-ubuntu14.04-prod.yml"
     ansible.extra_vars = {
       ansible_ssh_user: 'vagrant'
     }

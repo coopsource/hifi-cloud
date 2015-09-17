@@ -1,0 +1,5 @@
+---
+hifi_ubuntu1404_prod:
+  packages:
+    - "libsoxr0"
+    - "libtbb2"

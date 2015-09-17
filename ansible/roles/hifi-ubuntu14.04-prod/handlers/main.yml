@@ -1,0 +1,5 @@
+---
+- name: ldconfig
+  shell: "ldconfig"
+  args:
+    executable: "/bin/bash"
