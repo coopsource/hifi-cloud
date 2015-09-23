@@ -43,3 +43,6 @@
     state: latest
   with_items:
     - "{{ hifi_ubuntu1404_prod.packages }}"
+
+- name: Keep a local clone of the hifi repo to access static assets
+  git:
