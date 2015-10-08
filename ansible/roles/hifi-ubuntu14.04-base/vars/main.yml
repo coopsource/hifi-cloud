@@ -1,0 +1,16 @@
+---
+hifi_ubuntu1404_base:
+  repositories:
+    - "deb http://hifi-debian-repo.s3.amazonaws.com/ stable main"
+    - "ppa:ubuntu-toolchain-r/test"
+  packages:
+    - "qt"
+    - "libstdc++6"
+    - "libxslt1.1"
+    - "libpulse0"
+    - "libgstreamer0.10-0"
+    - "libgstreamer-plugins-base0.10-0"
+    - "libicu52"
+    - "libxcomposite1"
+  library_paths:
+    qt: "/usr/local/Qt5.4.2/lib"

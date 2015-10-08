@@ -1,0 +1,16 @@
+---
+- name: Add required repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ hifi_ubuntu1404_base.repositories }}"
+
+- name: Install apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    force: yes
+  with_items:
+    - "{{ hifi_ubuntu1404_base.packages }}"

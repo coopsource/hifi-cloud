@@ -1,0 +1,5 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - hifi-ubuntu14.04-prod
