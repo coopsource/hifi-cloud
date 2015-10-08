@@ -13,7 +13,7 @@
     state: latest
     force: yes
   with_items:
-    - "{{ hifi_ubuntu14.04_dev.packages }}"
+    - "{{ hifi_ubuntu1404_dev.packages }}"
 
 - name: Install alternatives
   shell: "update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9"
@@ -26,9 +26,10 @@
     executable: "/bin/bash"
 
 - name: Create swap
-  shell: "fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile"
+  shell: "fallocate -l 8G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile"
   args:
     executable: "/bin/bash"
+    creates: "/swapfile"
   tags:
     - "swap"
 
